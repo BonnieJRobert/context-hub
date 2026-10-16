@@ -11,6 +11,8 @@ other context standards for AI coding tools and software projects.
 ├── .cursorrules
 ├── .gitignore
 ├── .github/
+│   ├── agents/
+│   ├── instructions/
 │   ├── copilot-instructions.md
 │   └── skills/
 │       ├── pr-create/SKILL.md
@@ -40,6 +42,8 @@ npm run lint:md
 ## Conventions
 
 - Use Markdown for human-readable guidance and keep examples portable.
+- Put reusable Copilot agent profiles under `.github/agents/`.
+- Put scoped Copilot instructions under `.github/instructions/`.
 - Put GitHub Copilot skills under `.github/skills/<skill-name>/SKILL.md`.
 - Keep repository-wide agent guidance in `AGENTS.md`; keep
   `.github/copilot-instructions.md` aligned with it.

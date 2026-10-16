@@ -12,7 +12,9 @@ Content is documentation; there is no application runtime.
 ## Where things go
 
 - Repository-wide agent guidance: `AGENTS.md`
+- Reusable GitHub Copilot agent profiles: `.github/agents/`
 - GitHub Copilot repository instructions: `.github/copilot-instructions.md`
+- Scoped GitHub Copilot instructions: `.github/instructions/`
 - Copilot skills: `.github/skills/<skill-name>/SKILL.md`
 - Cursor compatibility guidance: `.cursorrules`
 - Repository maps and contributor guidance: `ARCHITECTURE.md` and
@@ -21,6 +23,8 @@ Content is documentation; there is no application runtime.
 ## Writing guidance
 
 - Keep each document focused, actionable, and portable across repositories.
+- Put reusable Copilot agent profiles in `.github/agents/`.
+- Put scoped Copilot instructions in `.github/instructions/`.
 - Use lowercase kebab-case for skill directory names.
 - Give every skill YAML front matter with `name` and `description`.
 - Align overlapping guidance across the root agent file, Copilot instructions,
