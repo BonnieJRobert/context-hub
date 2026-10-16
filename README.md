@@ -31,6 +31,9 @@ Browse the files by format and purpose. Adapt a skill or instruction file to
 the conventions of its destination repository before reusing it; keep each
 document focused and portable.
 
+The [document-table-to-r skill](.github/skills/document-table-to-r/SKILL.md)
+supports PDF and Excel files. HTML support has not been tested.
+
 ## Conventions
 
 - Use Markdown for human-readable guidance and keep examples portable.
