@@ -29,7 +29,3 @@ Content is documentation; there is no application runtime.
 - Never add secrets, personal information, or unapproved proprietary content.
 - Update `ARCHITECTURE.md` when adding a top-level directory or changing how
   context files are organized.
-
-## Validation
-
-Run `npm run lint:md` to lint Markdown files before submitting changes.

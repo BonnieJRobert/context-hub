@@ -13,7 +13,6 @@ of the project's license.
 ## Before you submit
 
 - Follow the structure and conventions in [ARCHITECTURE.md](ARCHITECTURE.md).
-- Run `npm run lint:md` and resolve reported Markdown issues.
 - Keep `AGENTS.md`, `.github/copilot-instructions.md`, and `.cursorrules`
   consistent where their guidance overlaps.
 - For a new Copilot skill, use `.github/skills/<skill-name>/SKILL.md` and
