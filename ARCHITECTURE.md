@@ -14,7 +14,6 @@ documentation; there is no application runtime or service.
 
 | Path | Purpose |
 | --- | --- |
-| `AGENTS.md` | Repository-wide guidance for AI coding agents. |
 | `.cursorrules` | Concise compatibility guidance for tools that consume this format. |
 | `.gitignore` | Excludes local dependencies and editor/OS files. |
 | `.github/agents/` | Reusable GitHub Copilot agent profiles. |
@@ -47,5 +46,5 @@ documentation; there is no application runtime or service.
   boundaries.
 - Avoid embedding credentials, personal information, or unapproved proprietary
   material in examples.
-- Keep the root `AGENTS.md`, `.github/copilot-instructions.md`, and
-  `.cursorrules` aligned when they describe the same repository-wide rules.
+- Keep `.github/copilot-instructions.md` and `.cursorrules` aligned when they
+  describe the same repository-wide rules.

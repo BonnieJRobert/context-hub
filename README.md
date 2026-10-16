@@ -1,13 +1,12 @@
 # context-hub
 
-A personal library of reusable `SKILL.md`, `AGENTS.md`, `.cursorrules`, and
-other context standards for AI coding tools and software projects.
+A personal library of reusable `SKILL.md`, `.cursorrules`, and other context
+standards for AI coding tools and software projects.
 
 ## Repository layout
 
 ```text
 .
-├── AGENTS.md
 ├── .cursorrules
 ├── .gitignore
 ├── .github/
@@ -37,8 +36,6 @@ document focused and portable.
 - Put reusable Copilot agent profiles under `.github/agents/`.
 - Put scoped Copilot instructions under `.github/instructions/`.
 - Put GitHub Copilot skills under `.github/skills/<skill-name>/SKILL.md`.
-- Keep repository-wide agent guidance in `AGENTS.md`; keep
-  `.github/copilot-instructions.md` aligned with it.
 - Keep compatibility guidance in `.cursorrules` concise and consistent with
   the other instruction files.
 - Never add secrets, personal information, or proprietary content that is not

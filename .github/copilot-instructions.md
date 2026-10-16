@@ -8,7 +8,6 @@ or service.
 
 ## Content locations
 
-- `AGENTS.md` — repository-wide agent guidance
 - `.github/agents/` — reusable GitHub Copilot agent profiles
 - `.github/copilot-instructions.md` — GitHub Copilot repository instructions
 - `.github/instructions/` — scoped GitHub Copilot instructions

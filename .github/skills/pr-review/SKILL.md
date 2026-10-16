@@ -30,8 +30,8 @@ Check for meaningful problems, including:
 - Skill directories outside `.github/skills/` or skill files without valid
   `name` and `description` front matter.
 - Instructions that conflict with one another or the stated purpose.
-- Repository-wide guidance that conflicts across `AGENTS.md`,
-  `.github/copilot-instructions.md`, and `.cursorrules`.
+- Repository-wide guidance that conflicts across
+  `.github/copilot-instructions.md` and `.cursorrules`.
 - Unsafe guidance, requests to expose secrets, or examples containing
   credentials, personal information, or unapproved proprietary content.
 - Unclear, overly broad, non-portable, or contradictory directions.
