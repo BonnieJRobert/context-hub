@@ -14,6 +14,7 @@ standards for AI coding tools and software projects.
 │   ├── instructions/
 │   ├── copilot-instructions.md
 │   └── skills/
+│       ├── document-table-to-r/SKILL.md
 │       ├── pr-create/SKILL.md
 │       ├── pr-review/SKILL.md
 │       ├── repo-init/SKILL.md
@@ -29,6 +30,9 @@ standards for AI coding tools and software projects.
 Browse the files by format and purpose. Adapt a skill or instruction file to
 the conventions of its destination repository before reusing it; keep each
 document focused and portable.
+
+The [document-table-to-r skill](.github/skills/document-table-to-r/SKILL.md)
+supports PDF and Excel files. HTML support has not been tested.
 
 ## Conventions
 
