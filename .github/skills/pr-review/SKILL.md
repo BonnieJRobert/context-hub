@@ -36,8 +36,8 @@ the impact, and suggest a correction. Do not pad the review with style trivia.
 
 ## 3. Validate and report
 
-- Run `npm run lint:md` when practical; do not run checks that alter tracked
-  files or push changes.
+- Run relevant validation checks when practical; do not run checks that alter
+  tracked files or push changes.
 - Report findings by severity, with a brief recommendation.
 - Do not approve, request changes, merge, or post a review unless the user
   explicitly asks. When asked to post a review, use a comment by default.

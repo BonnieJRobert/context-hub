@@ -18,11 +18,9 @@ other context standards for AI coding tools and software projects.
 │       ├── pr-create/SKILL.md
 │       ├── pr-review/SKILL.md
 │       └── repo-sync/SKILL.md
-├── .markdownlint-cli2.jsonc
 ├── ARCHITECTURE.md
 ├── CONTRIBUTING.md
 ├── LICENSE
-├── package.json
 └── README.md
 ```
 
@@ -31,13 +29,6 @@ other context standards for AI coding tools and software projects.
 Browse the files by format and purpose. Adapt a skill or instruction file to
 the conventions of its destination repository before reusing it; keep each
 document focused and portable.
-
-Run the Markdown linter before submitting changes:
-
-```bash
-npm install
-npm run lint:md
-```
 
 ## Conventions
 
@@ -51,7 +42,6 @@ npm run lint:md
   the other instruction files.
 - Never add secrets, personal information, or proprietary content that is not
   approved for public release.
-- Run `npm run lint:md` after editing Markdown.
 
 ## Contributing
 

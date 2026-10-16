@@ -27,4 +27,3 @@ or service.
 - Do not include secrets, personal information, or unapproved proprietary
   material.
 - Update `ARCHITECTURE.md` when the structure or organization changes.
-- Run `npm run lint:md` after Markdown changes.
