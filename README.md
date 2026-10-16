@@ -14,6 +14,7 @@ standards for AI coding tools and software projects.
 │   ├── instructions/
 │   ├── copilot-instructions.md
 │   └── skills/
+│       ├── document-table-to-r/SKILL.md
 │       ├── pr-create/SKILL.md
 │       ├── pr-review/SKILL.md
 │       ├── repo-init/SKILL.md
