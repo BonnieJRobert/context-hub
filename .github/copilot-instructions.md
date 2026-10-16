@@ -9,7 +9,9 @@ or service.
 ## Content locations
 
 - `AGENTS.md` — repository-wide agent guidance
+- `.github/agents/` — reusable GitHub Copilot agent profiles
 - `.github/copilot-instructions.md` — GitHub Copilot repository instructions
+- `.github/instructions/` — scoped GitHub Copilot instructions
 - `.github/skills/<skill-name>/SKILL.md` — individual Copilot skills
 - `.cursorrules` — concise compatibility guidance
 - `ARCHITECTURE.md` — repository map and content flow
@@ -17,6 +19,8 @@ or service.
 ## Editing standards
 
 - Keep guidance focused, actionable, and portable.
+- Put reusable agent profiles in `.github/agents/` and scoped instructions in
+  `.github/instructions/`.
 - Use lowercase kebab-case for skill directory names.
 - Give each skill valid YAML front matter with `name` and `description`.
 - Keep overlapping rules aligned across the repository's instruction files.

@@ -16,6 +16,8 @@ of the project's license.
 - Run `npm run lint:md` and resolve reported Markdown issues.
 - Keep `AGENTS.md`, `.github/copilot-instructions.md`, and `.cursorrules`
   consistent where their guidance overlaps.
+- Put reusable Copilot agent profiles in `.github/agents/` and scoped
+  instruction files in `.github/instructions/`.
 - For a new Copilot skill, use `.github/skills/<skill-name>/SKILL.md` and
   include valid YAML front matter with a name and description.
 - Commit no secrets, personal information, or third-party content that is not

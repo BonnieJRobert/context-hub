@@ -17,7 +17,9 @@ documentation; there is no application runtime or service.
 | `AGENTS.md` | Repository-wide guidance for AI coding agents. |
 | `.cursorrules` | Concise compatibility guidance for tools that consume this format. |
 | `.gitignore` | Excludes local dependencies and editor/OS files. |
+| `.github/agents/` | Reusable GitHub Copilot agent profiles. |
 | `.github/copilot-instructions.md` | Repository instructions for GitHub Copilot. |
+| `.github/instructions/` | Scoped GitHub Copilot instruction files. |
 | `.github/skills/` | Reusable Copilot skills, each in its own directory with a `SKILL.md`. |
 | `.markdownlint-cli2.jsonc` | Markdown lint rules and file selection. |
 | `ARCHITECTURE.md` | This map of the repository and its conventions. |
@@ -39,8 +41,11 @@ documentation; there is no application runtime or service.
 ## Conventions
 
 - Use lowercase kebab-case directory names for skills.
+- Store reusable Copilot agent profiles in `.github/agents/`.
+- Store scoped Copilot instruction files in `.github/instructions/`.
 - Store each Copilot skill in `.github/skills/<skill-name>/SKILL.md`.
 - Give each skill valid YAML front matter containing `name` and `description`.
+- Keep agent and instruction files focused on their intended scope.
 - Keep instructions actionable, scoped, and explicit about relevant safety
   boundaries.
 - Avoid embedding credentials, personal information, or unapproved proprietary
