@@ -17,6 +17,7 @@ other context standards for AI coding tools and software projects.
 │   └── skills/
 │       ├── pr-create/SKILL.md
 │       ├── pr-review/SKILL.md
+│       ├── repo-init/SKILL.md
 │       └── repo-sync/SKILL.md
 ├── ARCHITECTURE.md
 ├── CONTRIBUTING.md
