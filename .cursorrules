@@ -1,0 +1,8 @@
+Read ARCHITECTURE.md first. This repository stores reusable AI coding context
+files and skills, not application code.
+
+Keep guidance portable, focused, and consistent across AGENTS.md and
+.github/copilot-instructions.md. Put Copilot skills in
+.github/skills/<skill-name>/SKILL.md with name and description front matter.
+Do not include secrets, personal information, or unapproved proprietary content.
+Run `npm run lint:md` after editing Markdown.

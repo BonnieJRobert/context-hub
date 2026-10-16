@@ -1,0 +1,14 @@
+# Dependencies and package-manager logs
+node_modules/
+npm-debug.log*
+
+# Operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
