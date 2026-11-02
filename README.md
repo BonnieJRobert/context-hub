@@ -45,10 +45,10 @@ mkdir -p /path/to/your-repo/.github/skills
 cp -R .github/skills/<skill-name> /path/to/your-repo/.github/skills/
 ```
 
-For a workspace that contains multiple repositories, copy the skill into the
-workspace's shared `.github/skills/` location if your tool supports
-workspace-level instructions; otherwise copy it into each repository that
-needs it. Keep the directory name in lowercase kebab-case and retain the
+To make a skill available across all of your repositories, copy it into your
+personal skills directory (`~/.copilot/skills/`) instead; otherwise copy it
+into each repository that needs it. Keep the directory name in lowercase
+kebab-case, matching the `name` in the front matter, and retain the
 `SKILL.md` filename and YAML front matter (`name` and `description`).
 
 Before using the ported skill, review and adapt repository-specific paths,
