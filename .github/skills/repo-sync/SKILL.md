@@ -35,13 +35,24 @@ that has not been merged without asking.
   squash merges may not be recognized as merged commits.
 - Ask before deleting a branch whose PR was closed without merging or whose
   status is otherwise ambiguous. Leave branches with unpushed work alone.
+- A remote branch with no local counterpart is not automatically stale; it may
+  belong to someone else. If it was not the head of a now-merged PR, treat it
+  as someone else's work until proven otherwise.
+  - Identify who has worked on it: `git log --format='%an <%ae> %ad' --date=short
+    origin/main..origin/<branch>` for authors and dates, and
+    `gh pr list --state all --head <branch> --json number,author,state` for
+    any associated PR.
+  - Report the branch, its authors, last commit date, and PR state to the user.
+  - Always ask before deleting such a branch, even if the author is the user.
+    Never delete it without explicit confirmation.
 
 ## 4. Clean up and verify
 
 - Delete only confirmed stale branches; never delete `main` or the current
   branch. Use `git branch -D <branch>` only for a branch with a merged PR whose
   commits Git does not consider merged. Delete its remote branch with
-  `git push origin --delete <branch>` only if the PR was merged.
+  `git push origin --delete <branch>` only if the PR was merged, or if the
+  user explicitly confirmed deletion after you reported who worked on it.
 - Run `git fetch --prune`, inspect branch listings, and verify with
   `git status -sb` that `main` matches `origin/main`.
 - Report local and remote branches deleted and any left active. Leave the user
