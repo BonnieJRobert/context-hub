@@ -12,3 +12,6 @@ Desktop.ini
 .idea/
 *.swp
 *.swo
+
+# Transient generated R scripts and downloaded source data
+tmp/

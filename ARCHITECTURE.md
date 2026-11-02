@@ -19,7 +19,7 @@ documentation; there is no application runtime or service.
 | `.github/agents/` | Reusable GitHub Copilot agent profiles. |
 | `.github/copilot-instructions.md` | Repository instructions for GitHub Copilot. |
 | `.github/instructions/` | Scoped GitHub Copilot instruction files. |
-| `.github/skills/` | Reusable Copilot skills (including R repository setup), each with a `SKILL.md`. |
+| `.github/skills/` | Reusable Copilot skills (including document table extraction and R repository setup), each with a `SKILL.md`. |
 | `ARCHITECTURE.md` | This map of the repository and its conventions. |
 | `CONTRIBUTING.md` | Contribution guidelines. |
 | `LICENSE` | Apache License 2.0. |
