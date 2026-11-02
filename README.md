@@ -32,7 +32,8 @@ the conventions of its destination repository before reusing it; keep each
 document focused and portable.
 
 The [document-table-to-r skill](.github/skills/document-table-to-r/SKILL.md)
-supports PDF and Excel files. HTML support has not been tested.
+supports PDF and Excel files. HTML, Markdown, and Word support has not been
+tested.
 
 ## Conventions
 

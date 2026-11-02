@@ -11,6 +11,11 @@ into an R data frame. Do not select a table for the user. Do not generate the
 script until the user has chosen a table after seeing its meaning and
 limitations.
 
+**Tested status:** PDF (`pdftools`) and Excel (`readxl`) extraction have been
+smoke-tested. HTML, Markdown, and Word (DOCX/DOC) handling is untested; when
+the source is one of these, tell the user and verify the extracted table
+carefully against the source.
+
 ## 1. Inspect the source
 
 - Ask for the document URL if it is not supplied. Check that it is reachable
