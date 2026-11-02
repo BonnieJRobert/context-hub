@@ -7,9 +7,10 @@ license: Apache-2.0
 # Reviewing Pull Requests
 
 Review the requested pull request or branch diff against its stated intent and
-the repository's conventions. Post the findings to the PR as a comment after
-every PR review; do not approve, request changes, or merge unless explicitly
-asked.
+the repository's conventions. Submit the findings to the PR as a review after
+every PR review, mirroring the GitHub **Submit review** dialog: choose
+**Comment**, **Approve**, or **Request changes** after the user confirms the
+choice. Never merge.
 
 ## 1. Gather context
 
@@ -65,9 +66,13 @@ approve with nits, or request changes.
 
 - Run relevant validation checks when practical; do not run checks that alter
   tracked files or push changes.
-- Post a single review with the `COMMENT` event, including the findings and
-  recommendation. Do not use `APPROVE` or `REQUEST_CHANGES` unless explicitly
-  asked. Keep the posted comment focused on findings, not checks that passed.
+- Submit a single review containing the findings and recommendation. Map the
+  recommendation to a review event (approve or approve with nits to `APPROVE`;
+  request changes to `REQUEST_CHANGES`) and ask the user to confirm it or
+  choose `COMMENT` before submitting. If the authenticated user authored the
+  PR, GitHub rejects `APPROVE` and `REQUEST_CHANGES`; use `COMMENT` and keep
+  the recommendation in the body. Keep the review body focused on findings,
+  not checks that passed.
 - Offer small, mechanical nits as inline GitHub suggestions on changed lines;
   use plain comments for findings that need judgment. Get the PR head SHA as
   `commit_id`, and use its line numbers, not those of the working tree. Each
