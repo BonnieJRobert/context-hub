@@ -7,9 +7,10 @@ license: Apache-2.0
 # Reviewing Pull Requests
 
 Review the requested pull request or branch diff against its stated intent and
-the repository's conventions. Post the findings to the PR as a comment after
-every PR review; do not approve, request changes, or merge unless explicitly
-asked.
+the repository's conventions. Submit the findings to the PR as a review after
+every PR review, mirroring the GitHub **Submit review** dialog: choose
+**Comment**, **Approve**, or **Request changes** after the user confirms the
+choice. Never merge.
 
 ## 1. Gather context
 
@@ -35,6 +36,18 @@ Check for meaningful problems, including:
 - Unsafe guidance, requests to expose secrets, or examples containing
   credentials, personal information, or unapproved proprietary content.
 - Unclear, overly broad, non-portable, or contradictory directions.
+- Commented-out code in lines the PR adds. Prefer removing code over
+  commenting it out, since version control preserves history. Report it as a
+  **Should fix** and offer an inline suggestion that deletes the code
+  completely. Ignore pre-existing commented-out code and genuine explanatory
+  comments.
+- Comments that explain why a commit or change was made, such as dated
+  "NOTE" blocks about what was removed, replaced, or kept for reviewers. The
+  "why" belongs in the PR description, and such comments become obsolete once
+  the change lands. Do not approve them; report them as **Should fix** and
+  suggest removing them or replacing them with a comment that describes only
+  what the code does now. Comments that explain lasting intent or constraints
+  of the current code are fine.
 - A missing `ARCHITECTURE.md` or `README.md` update when the repository layout
   changes.
 - A PR description with an inaccurate file count, missing Summary/Key Changes/
@@ -53,9 +66,13 @@ approve with nits, or request changes.
 
 - Run relevant validation checks when practical; do not run checks that alter
   tracked files or push changes.
-- Post a single review with the `COMMENT` event, including the findings and
-  recommendation. Do not use `APPROVE` or `REQUEST_CHANGES` unless explicitly
-  asked. Keep the posted comment focused on findings, not checks that passed.
+- Submit a single review containing the findings and recommendation. Map the
+  recommendation to a review event (approve or approve with nits to `APPROVE`;
+  request changes to `REQUEST_CHANGES`) and ask the user to confirm it or
+  choose `COMMENT` before submitting. If the authenticated user authored the
+  PR, GitHub rejects `APPROVE` and `REQUEST_CHANGES`; use `COMMENT` and keep
+  the recommendation in the body. Keep the review body focused on findings,
+  not checks that passed.
 - Offer small, mechanical nits as inline GitHub suggestions on changed lines;
   use plain comments for findings that need judgment. Get the PR head SHA as
   `commit_id`, and use its line numbers, not those of the working tree. Each
@@ -63,6 +80,8 @@ approve with nits, or request changes.
   fenced `suggestion` block containing the complete replacement line. Add
   `start_line` for multi-line suggestions. Do not suggest on blank lines or
   lines outside the diff; put those observations in the review body instead.
+  For commented-out code, use an empty `suggestion` block (spanning the
+  commented lines with `start_line`) so accepting it removes the code.
 - Write review JSON to a temporary file with file tools, submit it with
   `gh api repos/<owner>/<repo>/pulls/<number>/reviews --input <file>`,
   delete the file, and share the review URL. For follow-up reviews, note what
