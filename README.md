@@ -35,6 +35,29 @@ The [document-table-to-r skill](.github/skills/document-table-to-r/SKILL.md)
 supports PDF and Excel files. HTML, Markdown, and Word support has not been
 tested.
 
+## Porting a skill to another workspace or repository
+
+To use one of these skills elsewhere, copy the complete skill directory into
+the destination's `.github/skills/` directory:
+
+```bash
+mkdir -p /path/to/your-repo/.github/skills
+cp -R .github/skills/<skill-name> /path/to/your-repo/.github/skills/
+```
+
+For a workspace that contains multiple repositories, copy the skill into the
+workspace's shared `.github/skills/` location if your tool supports
+workspace-level instructions; otherwise copy it into each repository that
+needs it. Keep the directory name in lowercase kebab-case and retain the
+`SKILL.md` filename and YAML front matter (`name` and `description`).
+
+Before using the ported skill, review and adapt repository-specific paths,
+commands, tools, package assumptions, permissions, and references to other
+instructions. Remove examples or behavior that do not fit the destination's
+policies. Then test it with a representative request and confirm that the
+result follows the skill's required user choices, safety boundaries, and
+output format.
+
 ## Conventions
 
 - Use Markdown for human-readable guidance and keep examples portable.
