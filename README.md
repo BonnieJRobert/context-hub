@@ -37,8 +37,9 @@ tested.
 
 ## Porting a skill to another workspace or repository
 
-To use one of these skills elsewhere, copy the complete skill directory into
-the destination's `.github/skills/` directory:
+To use one of these skills elsewhere, run the following from this repository's
+root to copy the complete skill directory into the destination's
+`.github/skills/` directory:
 
 ```bash
 mkdir -p /path/to/your-repo/.github/skills
