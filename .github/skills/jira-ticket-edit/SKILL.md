@@ -115,8 +115,8 @@ QA against the 2019 model data has been done.
 
 ## 6. Issue type
 
-- The team's tickets are created as Story in JIRA. Use that type unless the
-  user says otherwise. Do not change an existing ticket's type.
+- The team's tickets are created as Task in JIRA. Use Story only when the
+  user explicitly asks for it. Do not change an existing ticket's type.
 
 ## 7. Review before saving
 
