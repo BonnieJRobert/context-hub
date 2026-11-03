@@ -26,7 +26,7 @@ from another worker. Ask for any that are missing; never guess them.
 | Input | Notes |
 |-------|-------|
 | Epic key | For example `ABC-123`. The team uses epics in place of JIRA projects, and projects in place of team boards, so the epic is the parent of the new ticket. Never assume a default epic. |
-| Assignee | A person's name, email, or account ID. If none is provided, ask. Do not leave the ticket unassigned or assign it to the user by default. |
+| Assignee | A person's name, email, or account ID. If the task is a GitHub pull request to review and none is provided, use the PR's reviewer (see section 2). Otherwise, if none is provided, ask. Do not leave the ticket unassigned or assign it to the user by default. An assignee the user provides always wins over the reviewer. |
 | Task description | What the work is and why. Enough to write the Context and Definition of Done. |
 
 Optional inputs: tag, priority, issue type, links.
@@ -57,6 +57,37 @@ JIRA assigns by account ID, not by name.
 - Only users assignable in the project are valid. If there are no matches or
   several, show the candidates (display name only) and ask the user to choose.
 - Do not store account IDs or email addresses in the repository.
+
+### Assignee from a GitHub PR reviewer
+
+When the task is a GitHub pull request and no assignee was provided, use the
+person tagged as reviewer.
+
+1. Read the reviewers (read-only):
+
+   ```bash
+   gh pr view <number-or-url> --json reviewRequests,latestReviews \
+     --jq '{requested: [.reviewRequests[] | .login // .slug], reviewed: [.latestReviews[].author.login]}'
+   ```
+
+   - Ignore team entries (those with a `slug` rather than a `login`) and the
+     PR author.
+   - Use requested reviewers first. Use people who already reviewed only when
+     nobody is requested.
+   - If there are several reviewers, ask the user which one to assign. If
+     there are none, ask for an assignee.
+2. Map the GitHub handle to a JIRA user. Handles often do not match work
+   emails, so infer the person rather than searching on the handle:
+   - Read the public profile: `gh api users/<login> --jq '{name, email}'`.
+   - Search JIRA assignable users using the profile name (full name, then
+     last name), then the profile email if present, then the handle itself.
+   - Accept a match only when the display name clearly corresponds to the
+     profile name. Do not accept a match on the handle alone.
+3. Always confirm an inferred assignee with the user before creating the
+   ticket, showing the GitHub handle and the matched JIRA display name. If
+   there is no clear match, show the candidates (display name only) and ask.
+4. Do not store GitHub handles mapped to emails or account IDs in the
+   repository.
 
 ## 3. Draft the ticket
 
