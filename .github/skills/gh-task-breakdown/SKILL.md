@@ -13,9 +13,18 @@ small sub-issues that agents (workers) can pick up. Write each issue with the
 ## 1. Prerequisites
 
 - `gh auth status` succeeds. Adding items to a Project needs the `project`
-  scope: `gh auth refresh -s project`.
+  scope. If it is missing, run `gh auth refresh -h github.com -s project`.
+  This may require completing browser authentication.
 - Identify the target repository (`owner/repo`) and, if used, the Project
   number and owner (`@me` for a personal account). Ask the user if unknown.
+- If the user wants Project tracking but has no Project yet, ask whether to
+  create one and what title to use. After approval, create and link it:
+
+  ```bash
+  gh project create --owner <owner> --title "<title>"
+  gh project link <project-number> --owner <owner> --repo <owner>/<repo>
+  ```
+
 - If `gh` is unavailable, present the plan in the chat only.
 
 ## 2. Plan the breakdown
