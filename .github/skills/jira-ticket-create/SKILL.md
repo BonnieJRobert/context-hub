@@ -1,6 +1,6 @@
 ---
 name: jira-ticket-create
-description: Guide for creating a new JIRA ticket in a specified project with a title tag and an assignee. Use when asked to create, open, file, or add a new JIRA ticket, issue, story, or task.
+description: Guide for creating a new JIRA ticket under a specified epic with a title tag and an assignee. Use when asked to create, open, file, or add a new JIRA ticket, issue, story, or task.
 license: Apache-2.0
 ---
 
@@ -9,7 +9,8 @@ license: Apache-2.0
 This skill extends `jira-ticket-edit`. Follow that skill for connecting to
 JIRA (its section 1), understanding the ticket (2), structure (3), style and
 wording (4), fields and metadata (5), issue type (6), and review (7). This
-skill adds the inputs and steps specific to creating a new ticket.
+skill adds the inputs and steps specific to creating a new ticket, and where
+it states a different default (issue type, priority), this skill wins.
 
 If `jira-ticket-edit` is not available, apply these minimum rules: read the
 connection from `JIRA_BASE_URL`, `JIRA_EMAIL`, and `JIRA_API_TOKEN` (check only
@@ -24,16 +25,21 @@ from another worker. Ask for any that are missing; never guess them.
 
 | Input | Notes |
 |-------|-------|
-| Project key | For example `ABC`. Never assume a default project. |
-| Tag | The bracketed title prefix, for example `pssm`. If none is provided, ask. Do not derive it. |
+| Epic key | For example `ABC-123`. The team uses epics in place of JIRA projects, and projects in place of team boards, so the epic is the parent of the new ticket. Never assume a default epic. |
 | Assignee | A person's name, email, or account ID. If none is provided, ask. Do not leave the ticket unassigned or assign it to the user by default. |
 | Task description | What the work is and why. Enough to write the Context and Definition of Done. |
 
-Optional inputs: parent epic key, priority, issue type, links.
+Optional inputs: tag, priority, issue type, links.
 
-- If a parent epic is given, read other tickets under it (for example, JQL
-  `parent = <EPIC-KEY>`) and check that the supplied tag matches theirs. If it
-  differs, point this out and ask which to use.
+- The JIRA project key (`ABC` in `ABC-123`) is taken from the epic key and is
+  only used to create the ticket and look up assignees. Do not ask for it
+  separately. If the user supplies a bare project key with no epic, ask for
+  the epic.
+- Tag: use the one provided. If none is provided, infer it by reading other
+  tickets under the epic (for example, JQL `parent = <EPIC-KEY>`) and reusing
+  their tag. If the epic has no tickets, or its tickets use different tags,
+  ask. If a provided tag differs from the epic's other tickets, point this out
+  and ask which to use.
 - Ask for all missing inputs in a single question.
 
 ## 2. Resolve the assignee
@@ -56,11 +62,13 @@ JIRA assigns by account ID, not by name.
 
 - Title: `[<tag>] <short action phrase>`.
 - Description: Context, then Definition of Done, as in `jira-ticket-edit`.
-- Issue type: Story unless the user says otherwise.
-- Priority: suggest one with brief reasoning as in `jira-ticket-edit`; the user
-  decides. Leave labels and components empty unless asked.
-- Show the user the full draft (project, issue type, title, description,
-  assignee, parent, priority) and get approval before creating.
+- Issue type: Task. Use Story only when the user explicitly asks for it.
+- Priority: Low by default. Raise it only when the ticket blocks other work or
+  a deadline, or when the user specifies one, and state the reasoning. Leave
+  labels and components empty unless asked.
+- Show the user the full draft (epic, issue type, title, description,
+  assignee, priority) and get approval before creating. Note any inferred
+  values, such as the tag.
 
 ## 4. Create the ticket
 
@@ -80,7 +88,7 @@ Minimal `ticket.json`; write it to a temporary file and delete it afterward:
 {
   "fields": {
     "project": { "key": "<PROJECT>" },
-    "issuetype": { "name": "Story" },
+    "issuetype": { "name": "Task" },
     "summary": "[<tag>] <short action phrase>",
     "description": {
       "type": "doc",
@@ -91,13 +99,14 @@ Minimal `ticket.json`; write it to a temporary file and delete it afterward:
       ]
     },
     "assignee": { "accountId": "<ACCOUNT-ID>" },
-    "parent": { "key": "<EPIC-KEY>" }
+    "parent": { "key": "<EPIC-KEY>" },
+    "priority": { "name": "Low" }
   }
 }
 ```
 
-- Omit `parent` when there is no epic and `priority` when none was chosen
-  (`"priority": { "name": "<Name>" }` otherwise).
+- `<PROJECT>` is the prefix of the epic key.
+- Set `priority` to the chosen priority name.
 - Check the HTTP status. A 400 usually means a required field is missing or the
   issue type is not valid for the project; report the error message, not the
   credentials.
@@ -107,6 +116,6 @@ Minimal `ticket.json`; write it to a temporary file and delete it afterward:
 ## 5. Report
 
 - Give the new ticket key and its URL (`<JIRA_BASE_URL>/browse/<KEY>`), its
-  assignee's display name, and the project.
+  assignee's display name, and the epic.
 - Do not include secrets, personal information, or unapproved proprietary
   material in the ticket.
