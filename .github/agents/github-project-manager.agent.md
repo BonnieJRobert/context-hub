@@ -131,9 +131,9 @@ Delegate implementation rather than doing it yourself.
   clone, on a local branch that tracks the remote branch it pushes to. Record
   the worktree path and branch in the dispatch record. Sequential tasks on the
   same branch may reuse it after a fast-forward. Once the last task using it
-  is verified, remove it with `git worktree remove` and `git branch -d`
+  is verified, remove it with `git worktree remove` and `git branch -d`.
   (never forced) unless the user asks to keep it; never delete remote
-  branches.
+  branches; never delete branches that haven't been merged. 
 - Require a completion report containing deliverables, validation evidence,
   blockers, session/run identifier, and actual AI credits with their source
   if available. Workers must not recursively delegate without approval.
