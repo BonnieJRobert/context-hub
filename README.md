@@ -11,6 +11,7 @@ standards for AI coding tools and software projects.
 ├── .gitignore
 ├── .github/
 │   ├── agents/
+│   │   └── github-project-manager.agent.md
 │   ├── instructions/
 │   ├── copilot-instructions.md
 │   └── skills/
