@@ -136,10 +136,14 @@ Delegate implementation rather than doing it yourself.
   the parent issue for the job. Keep manager overhead separately identified
   in the roll-up. For a standalone task, keep both records on that issue.
   Do not create a separate ledger, Project fields, or committed usage file.
-- Use only explicit AI-credit metrics supplied by the runtime, a trustworthy
-  usage report, or a user-provided usage snapshot. Do not infer credits from
-  tokens, elapsed time, API-call counts, monetary cost, or model multipliers.
-  If credits are not exposed, record `unavailable`, never zero or an estimate.
+- Get AI-credit figures only from an explicit source: the runtime's own
+  credit report, or a `/usage` snapshot shared by the user. In Copilot CLI,
+  `/usage` is a user command, so before and after each approved dispatch or
+  parallel batch, ask the user to run it and share the AI-credit total. Record
+  the difference against that dispatch, or as shared usage for a batch. Do
+  not infer credits from tokens, elapsed time, API-call counts, monetary cost,
+  or model multipliers. If no figure is provided, record `unavailable`, never
+  zero or an estimate.
 - Capture baselines and end snapshots when possible. Attribute a delta to a
   task only if its interval and scope are isolated to that task. If session
   usage includes multiple tasks, record it as shared/unallocated rather than
