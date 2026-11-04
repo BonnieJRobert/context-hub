@@ -27,7 +27,8 @@ connection from the environment:
 - When all three variables are set, use the REST API with `curl`:
 
   ```bash
-  curl -s -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
+  curl -s -w '\nHTTP %{http_code}\n' \
+    -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
     "${JIRA_BASE_URL%/}/rest/api/3/issue/<KEY>"
   ```
 
@@ -124,4 +125,3 @@ QA against the 2019 model data has been done.
 - Preserve existing content unless the user asks to remove it.
 - Do not include secrets, personal information, or unapproved proprietary
   material.
-
