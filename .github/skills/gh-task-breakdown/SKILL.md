@@ -7,8 +7,9 @@ license: Apache-2.0
 # Breaking a Goal into GitHub Issues
 
 Follow these instructions to turn one goal into a parent issue and a set of
-small sub-issues that agents (workers) can pick up. Write each issue with the
-`gh-issue-edit` skill's structure: a Context paragraph and a Definition of Done.
+small sub-issues that agents (workers) can pick up. Give each issue a Context
+paragraph (why the work is needed and what it affects) and a Definition of
+Done (a short checklist of verifiable outcomes).
 
 ## 1. Prerequisites
 
@@ -53,7 +54,8 @@ rename or extend it:
 - Create missing labels once:
 
   ```bash
-  gh label create "worker:coder" --description "Coding agent" --color 0E8A16
+  gh label create "worker:coder" --description "Coding agent" --color 0E8A16 \
+    --repo "<owner>/<repo>" --force
   ```
 
 - Apply exactly one `worker:*` label per task.
@@ -69,7 +71,8 @@ rename or extend it:
    any dependency (for example, `Depends on #12.`):
 
    ```bash
-   gh issue create --title "<title>" --body-file <file> --label "worker:coder"
+   gh issue create --repo <owner>/<repo> --title "<title>" --body-file <file> \
+     --label "worker:coder"
    ```
 
 3. Link each sub-issue to the parent. The API needs the sub-issue's numeric
@@ -84,7 +87,7 @@ rename or extend it:
 4. Add the parent and sub-issues to the Project, if one is used:
 
    ```bash
-   gh project item-add <project-number> --owner "@me" --url <issue-url>
+   gh project item-add <project-number> --owner <owner> --url <issue-url>
    ```
 
 5. Report the parent issue URL and a list of the sub-issues with their workers.
@@ -93,13 +96,13 @@ rename or extend it:
 
 - When a worker finishes a task, close its issue with a comment that states
   how the Definition of Done was met (`gh issue close <number> --comment ...`).
-- To find the next task, list open sub-issues whose dependencies are closed,
-  for example `gh issue list --label "worker:coder" --state open`.
+- To find the next task, list a worker's open issues, for example
+  `gh issue list --repo <owner>/<repo> --label "worker:coder" --state open`,
+  then check each issue's "Depends on" line and pick one whose dependencies
+  are all closed.
 - When all sub-issues are closed, check the parent's Definition of Done and
   close it.
 
 ## 6. Review before saving
 
-- Get approval of the plan before creating issues, and show the final list
-  afterward.
 - Do not include secrets or personal information in issues.
