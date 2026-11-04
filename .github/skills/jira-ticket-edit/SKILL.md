@@ -1,6 +1,6 @@
 ---
 name: jira-ticket-edit
-description: Guide for writing and editing JIRA tickets. Use when asked to create, write, rewrite, refine, or edit a JIRA ticket, issue, story, bug, or task.
+description: Guide for writing and editing JIRA tickets. Use when asked to write, rewrite, refine, or edit a JIRA ticket, issue, story, bug, or task. For new tickets, use jira-ticket-create.
 license: Apache-2.0
 ---
 
