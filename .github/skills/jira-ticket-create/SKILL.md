@@ -49,9 +49,11 @@ JIRA assigns by account ID, not by name.
 - If given an account ID, check that it is assignable in the project:
 
   ```bash
-  curl -s -w '\nHTTP %{http_code}\n' \
+  curl -s -G -w '\nHTTP %{http_code}\n' \
     -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
-    "${JIRA_BASE_URL%/}/rest/api/3/user/assignable/search?project=<PROJECT>&accountId=<ACCOUNT-ID>"
+    --data-urlencode "project=<PROJECT>" \
+    --data-urlencode "accountId=<ACCOUNT-ID>" \
+    "${JIRA_BASE_URL%/}/rest/api/3/user/assignable/search"
   ```
 
   Success is HTTP 200; a 200 with an empty array (`[]`) means no assignable
@@ -62,9 +64,11 @@ JIRA assigns by account ID, not by name.
 - Otherwise look the person up and confirm the match:
 
   ```bash
-  curl -s -w '\nHTTP %{http_code}\n' \
+  curl -s -G -w '\nHTTP %{http_code}\n' \
     -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
-    "${JIRA_BASE_URL%/}/rest/api/3/user/assignable/search?project=<PROJECT>&query=<name-or-email>"
+    --data-urlencode "project=<PROJECT>" \
+    --data-urlencode "query=<name-or-email>" \
+    "${JIRA_BASE_URL%/}/rest/api/3/user/assignable/search"
   ```
 
   The same status rules apply: only HTTP 200 is success, and `[]` means no
