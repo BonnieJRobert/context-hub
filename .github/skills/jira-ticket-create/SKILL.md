@@ -46,7 +46,15 @@ Optional inputs: tag, priority, issue type, links.
 
 JIRA assigns by account ID, not by name.
 
-- If given an account ID, use it as is.
+- If given an account ID, check that it is assignable in the project:
+
+  ```bash
+  curl -s -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
+    "${JIRA_BASE_URL%/}/rest/api/3/user/assignable/search?project=<PROJECT>&accountId=<ACCOUNT-ID>"
+  ```
+
+  If the result is empty or an error, do not create the ticket with that ID;
+  tell the user it is not assignable and ask for another assignee.
 - Otherwise look the person up and confirm the match:
 
   ```bash
