@@ -55,7 +55,7 @@ rename or extend it:
 
   ```bash
   gh label create "worker:coder" --description "Coding agent" --color 0E8A16 \
-    --repo <owner>/<repo> --force
+    --repo "<owner>/<repo>" --force
   ```
 
 - Apply exactly one `worker:*` label per task.
