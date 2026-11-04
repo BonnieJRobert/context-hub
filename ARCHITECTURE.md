@@ -17,6 +17,7 @@ documentation; there is no application runtime or service.
 | `.cursorrules` | Concise compatibility guidance for tools that consume this format. |
 | `.gitignore` | Excludes local dependencies and editor/OS files. |
 | `.github/agents/` | Reusable GitHub Copilot agent profiles. |
+| `.github/agents/github-project-manager.agent.md` | Project-scoped planning, approved local worker dispatch, and issue-based AI-credit reporting. |
 | `.github/copilot-instructions.md` | Repository instructions for GitHub Copilot. |
 | `.github/instructions/` | Scoped GitHub Copilot instruction files. |
 | `.github/skills/` | Reusable Copilot skills (including document table extraction and R repository setup), each with a `SKILL.md`. |
