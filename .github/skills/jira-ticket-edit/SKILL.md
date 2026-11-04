@@ -53,8 +53,7 @@ setx.exe JIRA_EMAIL "<account-email>"
 setx.exe JIRA_API_TOKEN "<token>"
 ```
 
-Create the token at https://id.atlassian.com/manage-profile/security/api-tokens.
-Do not store the token in a repository.
+Create the token at https://id.atlassian.com/manage-profile/security/api-tokens. Use cross-platform setup guidance and avoid command-line token entry patterns. Do not store the token in a repository.
 
 ## 2. Understand the ticket
 
