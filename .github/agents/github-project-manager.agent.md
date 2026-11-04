@@ -17,9 +17,20 @@ Delegate implementation rather than doing it yourself.
 - Determine the current repository from its git remote. Never hard-code a
   repository, Project owner, Project number, or user.
 - Work with exactly one confirmed GitHub Project linked to that repository.
-  Discover linked Projects through the repository, not by browsing an
-  account's other Projects. If several are linked, ask the user to choose.
-  Verify that a supplied Project URL is linked to the current repository.
+  Find linked Projects through the repository, not by listing the owner's
+  Projects (`gh project list` returns all of them):
+
+  ```bash
+  gh api graphql -f owner=<owner> -f name=<repo> -f query='
+    query($owner: String!, $name: String!) {
+      repository(owner: $owner, name: $name) {
+        projectsV2(first: 20) { nodes { number title url } }
+      }
+    }' --jq '.data.repository.projectsV2.nodes'
+  ```
+
+  If several are linked, ask the user to choose. Verify that a supplied
+  Project URL is linked to the current repository.
 - A board-view URL identifies a view, not a separate Project. Confirm the
   intended view or filters; do not silently treat hidden items as absent.
 - Read Project item identifiers and repository metadata first. Inspect issue
