@@ -49,19 +49,26 @@ JIRA assigns by account ID, not by name.
 - If given an account ID, check that it is assignable in the project:
 
   ```bash
-  curl -s -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
+  curl -s -w '\nHTTP %{http_code}\n' \
+    -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
     "${JIRA_BASE_URL%/}/rest/api/3/user/assignable/search?project=<PROJECT>&accountId=<ACCOUNT-ID>"
   ```
 
-  If the result is empty or an error, do not create the ticket with that ID;
-  tell the user it is not assignable and ask for another assignee.
+  Success is HTTP 200; a 200 with an empty array (`[]`) means no assignable
+  match, and any other status is an error (401 or 403 is an authentication or
+  permission problem; report it without the credentials). If the result is
+  empty or an error, do not create the ticket with that ID; tell the user it
+  is not assignable and ask for another assignee.
 - Otherwise look the person up and confirm the match:
 
   ```bash
-  curl -s -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
+  curl -s -w '\nHTTP %{http_code}\n' \
+    -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
     "${JIRA_BASE_URL%/}/rest/api/3/user/assignable/search?project=<PROJECT>&query=<name-or-email>"
   ```
 
+  The same status rules apply: only HTTP 200 is success, and `[]` means no
+  matches.
 - Only users assignable in the project are valid. If there are no matches or
   several, show the candidates (display name only) and ask the user to choose.
 - Do not store account IDs or email addresses in the repository.
@@ -115,7 +122,7 @@ When the connection variables are set, create it with the REST API. The
 description must be in Atlassian Document Format (ADF), not Markdown:
 
 ```bash
-curl -s -u "$JIRA_EMAIL:$JIRA_API_TOKEN" \
+curl -s -w '\nHTTP %{http_code}\n' -u "$JIRA_EMAIL:$JIRA_API_TOKEN" \
   -H "Accept: application/json" -H "Content-Type: application/json" \
   -X POST "${JIRA_BASE_URL%/}/rest/api/3/issue" \
   --data @ticket.json
@@ -146,9 +153,10 @@ Minimal `ticket.json`; write it to a temporary file and delete it afterward:
 
 - `<PROJECT>` is the prefix of the epic key.
 - Set `priority` to the chosen priority name.
-- Check the HTTP status. A 400 usually means a required field is missing or the
-  issue type is not valid for the project; report the error message, not the
-  credentials.
+- Check the HTTP status on the last line of the output; success is HTTP 201. A
+  400 usually means a required field is missing or the issue type is not valid
+  for the project; 401 or 403 means an authentication or permission problem.
+  Report the error message, not the credentials.
 - If any connection variable is missing, do not call JIRA. Give the user the
   drafted ticket text and say briefly that no JIRA connection was available.
 
