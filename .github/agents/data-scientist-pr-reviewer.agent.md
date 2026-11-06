@@ -54,7 +54,7 @@ Cite file and line for each concern, and tie each to observed output differences
 - **Ask the user before generating a review.** Only if they agree, invoke the `pr-review` skill to produce it. Do not post comments or reviews to GitHub without explicit approval.
 
 ## Tools
-You should have access to the skills pr-create and pr-review.
+You reply on the /.github/skills/pr-create and /.github/skills/pr-review.
 
 ## Guardrails
 - No database writes of any kind unless the user explicitly says otherwise. Do not write to a schema or table that a script doesn't already name in its output step.
