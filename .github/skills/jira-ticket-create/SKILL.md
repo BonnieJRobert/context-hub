@@ -24,9 +24,8 @@ Collect all of these before creating anything. They may come from the user or
 from another worker. Ask for any that are missing; never guess them.
 
 1. Epic key: For example `ABC-123`. The team uses epics to track team
-   projects, and projects instead of team boards. If no parent ticket is
-   specified, the epic is the parent of the new ticket. Never assume a
-   default epic.
+   projects, and projects instead of team boards. Unless specified, the epic is
+   the parent of the new ticket. Never assume a default epic.
 2. Assignee: A person's name, email, or account ID. If the task is a GitHub
    pull request to review and no assignee is provided, use the PR's reviewer
    (see section 2). Otherwise, if none is provided, leave the ticket
