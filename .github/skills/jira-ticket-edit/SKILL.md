@@ -1,6 +1,6 @@
 ---
 name: jira-ticket-edit
-description: Guide for writing and editing JIRA tickets. Use when asked to create, write, rewrite, refine, or edit a JIRA ticket, issue, story, bug, or task.
+description: Guide for writing and editing JIRA tickets. Use when asked to write, rewrite, refine, or edit a JIRA ticket, issue, story, bug, or task. For new tickets, use jira-ticket-create.
 license: Apache-2.0
 ---
 
@@ -46,14 +46,11 @@ connection from the environment:
 Setup (one time, from bash; then restart the terminal and the CLI so they
 inherit the variables):
 
-```bash
-setx.exe JIRA_BASE_URL "https://<site>.atlassian.net"
-setx.exe JIRA_EMAIL "<account-email>"
-setx.exe JIRA_API_TOKEN "<token>"
-```
+Set `JIRA_BASE_URL`, `JIRA_EMAIL`, and `JIRA_API_TOKEN` in your user environment
+through your operating system's settings or a secrets manager. Never type the
+token into a command line.
 
-Create the token at https://id.atlassian.com/manage-profile/security/api-tokens.
-Do not store the token in a repository.
+Create the token at https://id.atlassian.com/manage-profile/security/api-tokens. Do not store the token in a repository.
 
 ## 2. Understand the ticket
 
@@ -124,4 +121,3 @@ QA against the 2019 model data has been done.
 - Preserve existing content unless the user asks to remove it.
 - Do not include secrets, personal information, or unapproved proprietary
   material.
-
