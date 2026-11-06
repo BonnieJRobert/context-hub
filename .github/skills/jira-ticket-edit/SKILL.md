@@ -47,11 +47,9 @@ connection from the environment:
 Setup (one time, from bash; then restart the terminal and the CLI so they
 inherit the variables):
 
-```bash
-setx.exe JIRA_BASE_URL "https://<site>.atlassian.net"
-setx.exe JIRA_EMAIL "<account-email>"
-setx.exe JIRA_API_TOKEN "<token>"
-```
+Set `JIRA_BASE_URL`, `JIRA_EMAIL`, and `JIRA_API_TOKEN` in your user environment
+through your operating system's settings or a secrets manager. Never type the
+token into a command line.
 
 Create the token at https://id.atlassian.com/manage-profile/security/api-tokens. Use cross-platform setup guidance and avoid command-line token entry patterns. Do not store the token in a repository.
 
