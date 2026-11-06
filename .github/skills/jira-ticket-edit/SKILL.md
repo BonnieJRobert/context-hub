@@ -51,7 +51,7 @@ Set `JIRA_BASE_URL`, `JIRA_EMAIL`, and `JIRA_API_TOKEN` in your user environment
 through your operating system's settings or a secrets manager. Never type the
 token into a command line.
 
-Create the token at https://id.atlassian.com/manage-profile/security/api-tokens. Use cross-platform setup guidance and avoid command-line token entry patterns. Do not store the token in a repository.
+Create the token at https://id.atlassian.com/manage-profile/security/api-tokens. Do not store the token in a repository.
 
 ## 2. Understand the ticket
 
