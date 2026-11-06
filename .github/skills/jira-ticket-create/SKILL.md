@@ -23,23 +23,23 @@ ticket before creating it.
 Collect all of these before creating anything. They may come from the user or
 from another worker. Ask for any that are missing; never guess them.
 
-| Input | Notes |
-|-------|-------|
-| Epic key | For example `ABC-123`. The team uses epics in place of JIRA projects, and projects in place of team boards, so the epic is the parent of the new ticket. Never assume a default epic. |
-| Assignee | A person's name, email, or account ID. If the task is a GitHub pull request to review and none is provided, use the PR's reviewer (see section 2). Otherwise, if none is provided, ask. Do not leave the ticket unassigned or assign it to the user by default. An assignee the user provides always wins over the reviewer. |
-| Task description | What the work is and why. Enough to write the Context and Definition of Done. |
+1. Epic key: For example `ABC-123`. The team uses epics to track team
+   projects, and projects instead of team boards. If no parent ticket is
+   specified, the epic is the parent of the new ticket. Never assume a
+   default epic.
+2. Assignee: A person's name, email, or account ID. If the task is a GitHub
+   pull request to review and no assignee is provided, use the PR's reviewer
+   (see section 2). Otherwise, if none is provided, leave the ticket
+   unassigned by default.
+3. Task description: What the work is and why. Enough to write the Context
+   and Definition of Done.
 
 Optional inputs: tag, priority, issue type, links.
 
-- The JIRA project key (`ABC` in `ABC-123`) is taken from the epic key and is
-  only used to create the ticket and look up assignees. Do not ask for it
-  separately. If the user supplies a bare project key with no epic, ask for
-  the epic.
 - Tag: use the one provided. If none is provided, infer it by reading other
   tickets under the epic (for example, JQL `parent = <EPIC-KEY>`) and reusing
-  their tag. If the epic has no tickets, or its tickets use different tags,
-  ask. If a provided tag differs from the epic's other tickets, point this out
-  and ask which to use.
+  the tag most often seen. If a provided tag differs from the epic's other
+  tickets, point this out and ask which to use.
 - Ask for all missing inputs in a single question.
 
 ## 2. Resolve the assignee
@@ -94,9 +94,9 @@ person tagged as reviewer.
    - Use requested reviewers first. Use people who already reviewed only when
      nobody is requested.
    - If there are several reviewers, ask the user which one to assign. If
-     there are none, ask for an assignee.
-2. Map the GitHub handle to a JIRA user. Handles often do not match work
-   emails, so infer the person rather than searching on the handle:
+     there are none, leave the ticket unassigned.
+2. Map the GitHub handle to a JIRA user. If a handle does not match work
+   emails, infer the person rather than searching on the handle:
    - Read the public profile: `gh api users/<login> --jq '{name, email}'`.
    - Search JIRA assignable users using the profile name (full name, then
      last name), then the profile email if present, then the handle itself.
@@ -113,9 +113,9 @@ person tagged as reviewer.
 - Title: `[<tag>] <short action phrase>`.
 - Description: Context, then Definition of Done, as in `jira-ticket-edit`.
 - Issue type: Task. Use Story only when the user explicitly asks for it.
-- Priority: Low by default. Raise it only when the ticket blocks other work or
-  a deadline, or when the user specifies one, and state the reasoning. Leave
-  labels and components empty unless asked.
+- Priority: Low by default. Raise it only when the ticket blocks other work
+  or a deadline, or when the user specifies one, and state the reasoning.
+  Leave labels and components empty unless asked.
 - Show the user the full draft (epic, issue type, title, description,
   assignee, priority) and get approval before creating. Note any inferred
   values, such as the tag.
@@ -157,10 +157,12 @@ Minimal `ticket.json`; write it to a temporary file and delete it afterward:
 
 - `<PROJECT>` is the prefix of the epic key.
 - Set `priority` to the chosen priority name.
-- Check the HTTP status on the last line of the output; success is HTTP 201. A
-  400 usually means a required field is missing or the issue type is not valid
-  for the project; 401 or 403 means an authentication or permission problem.
-  Report the error message, not the credentials.
+- If no assignee applies, omit the `assignee` field so the ticket is left
+  unassigned.
+- Check the HTTP status on the last line of the output; success is HTTP 201.
+  A 400 usually means a required field is missing or the issue type is not
+  valid for the project; 401 or 403 means an authentication or permission
+  problem. Report the error message, not the credentials.
 - If any connection variable is missing, do not call JIRA. Give the user the
   drafted ticket text and say briefly that no JIRA connection was available.
 
