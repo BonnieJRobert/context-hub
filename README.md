@@ -17,6 +17,7 @@ standards for AI coding tools and software projects.
 │   └── skills/
 │       ├── document-table-to-r/SKILL.md
 │       ├── gh-task-breakdown/SKILL.md
+│       ├── jira-ticket-create/SKILL.md
 │       ├── jira-ticket-edit/SKILL.md
 │       ├── pr-create/SKILL.md
 │       ├── pr-review/SKILL.md
