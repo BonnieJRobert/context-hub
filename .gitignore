@@ -13,5 +13,7 @@ Desktop.ini
 *.swp
 *.swo
 
-# Transient generated R scripts and downloaded source data
+# Transient generated scripts and downloaded source data
 tmp/
+*.html
+**/Skill_files/

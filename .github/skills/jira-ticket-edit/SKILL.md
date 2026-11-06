@@ -27,8 +27,7 @@ connection from the environment:
 - When all three variables are set, use the REST API with `curl`:
 
   ```bash
-  curl -s -w '\nHTTP %{http_code}\n' \
-    -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
+  curl -s -u "$JIRA_EMAIL:$JIRA_API_TOKEN" -H "Accept: application/json" \
     "${JIRA_BASE_URL%/}/rest/api/3/issue/<KEY>"
   ```
 

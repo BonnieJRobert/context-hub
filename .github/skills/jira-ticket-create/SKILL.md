@@ -24,9 +24,8 @@ Collect all of these before creating anything. They may come from the user or
 from another worker. Ask for any that are missing; never guess them.
 
 1. Epic key: For example `ABC-123`. The team uses epics to track team
-   projects, and projects instead of team boards. If no parent ticket is
-   specified, the epic is the parent of the new ticket. Never assume a
-   default epic.
+   projects, and projects instead of team boards. Unless specified, the epic is
+   the parent of the new ticket. Never assume a default epic.
 2. Assignee: A person's name, email, or account ID. If the task is a GitHub
    pull request to review and no assignee is provided, use the PR's reviewer
    (see section 2). Otherwise, if none is provided, leave the ticket
@@ -94,9 +93,9 @@ person tagged as reviewer.
    - Use requested reviewers first. Use people who already reviewed only when
      nobody is requested.
    - If there are several reviewers, ask the user which one to assign. If
-     there are none, ask for an assignee.
-2. Map the GitHub handle to a JIRA user. Handles often do not match work
-   emails, so infer the person rather than searching on the handle:
+     there are none, leave the ticket unassigned.
+2. Map the GitHub handle to a JIRA user. If a handle does not match work
+   emails, infer the person rather than searching on the handle:
    - Read the public profile: `gh api users/<login> --jq '{name, email}'`.
    - Search JIRA assignable users using the profile name (full name, then
      last name), then the profile email if present, then the handle itself.
@@ -113,9 +112,9 @@ person tagged as reviewer.
 - Title: `[<tag>] <short action phrase>`.
 - Description: Context, then Definition of Done, as in `jira-ticket-edit`.
 - Issue type: Task. Use Story only when the user explicitly asks for it.
-- Priority: Low by default. Raise it only when the ticket blocks other work or
-  a deadline, or when the user specifies one, and state the reasoning. Leave
-  labels and components empty unless asked.
+- Priority: Low by default. Raise it only when the ticket blocks other work
+  or a deadline, or when the user specifies one, and state the reasoning.
+  Leave labels and components empty unless asked.
 - Show the user the full draft (epic, issue type, title, description,
   assignee, priority) and get approval before creating. Note any inferred
   values, such as the tag.
